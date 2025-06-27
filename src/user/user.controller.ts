@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Query, UnauthorizedException } from '@nestjs/common';
+import { Controller, Post, Body, Get, Query, UnauthorizedException, Patch, Param } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { UserSignupDto } from './dto/user-signup.dto';
@@ -40,6 +40,11 @@ export class UserController {
         } catch (err) {
             throw new UnauthorizedException('Invalid token');
         }
+    }
+
+    @Patch(':id')
+    async updateUser(@Param('id') id: string, @Body() dto: any) {
+        return this.userService.update(id, dto);
     }
 }
 // some
