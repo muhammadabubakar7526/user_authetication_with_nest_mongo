@@ -1,5 +1,9 @@
 name: Build and Push Docker Image to GHCR
 
+permissions:
+  packages: write
+  contents: read
+
 on:
   push:
     branches:
